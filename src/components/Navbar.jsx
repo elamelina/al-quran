@@ -21,9 +21,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div
-        className="bg-dark text-white vh-100 p-3 overflow-auto"        
-      >
+      <div className="bg-dark text-white vh-100 p-3 overflow-auto">
         <h5 className="text-center">Qur'an Web</h5>
         <ul className="nav flex-column">
           <li className="nav-item">
@@ -50,9 +48,9 @@ const Navbar = () => {
             </div>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link text-white">
-              <i className="bi bi-gear"></i> Settings
-            </a>
+            <Link to="/about" className="nav-link text-white">
+              <i className="bi bi-gear"></i> About
+            </Link>
           </li>
         </ul>
       </div>

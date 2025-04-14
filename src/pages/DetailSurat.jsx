@@ -1,14 +1,19 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom"; // Mengimpor useNavigate
 import parse from "html-react-parser";
+<<<<<<< HEAD
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPlayCircle, faPauseCircle, faFastBackward, faFastForward } from '@fortawesome/free-solid-svg-icons';
+=======
+import AudioPlayer from "../components/AudioPlayer";
+>>>>>>> 271d68acb7fcf9a9455ecf9aa56990dda12ba152
 
 const DetailSurat = () => {
   const { id } = useParams(); // Ambil parameter dari URL
   const navigate = useNavigate(); // Mendapatkan fungsi navigasi
   const [surat, setSurat] = useState([]);
   const [loading, setLoading] = useState(true);
+<<<<<<< HEAD
   const [audio, setAudio] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false); // State untuk melacak status audio
   const audioRef = useRef(null); // Menggunakan useRef untuk menyimpan instance Audio
@@ -37,8 +42,11 @@ const DetailSurat = () => {
       play(url); // Putar audio baru
     }
   };
+=======
+  const [currentAudio, setCurrentAudio] = useState(null);
+>>>>>>> 271d68acb7fcf9a9455ecf9aa56990dda12ba152
 
-  const getDataFromAPI = (idSurat) => {
+  const getDetailSurat = (idSurat) => {
     fetch(`https://equran.id/api/v2/surat/${idSurat}`)
       .then((res) => res.json())
       .then((data) => {
@@ -52,7 +60,7 @@ const DetailSurat = () => {
   };
 
   useEffect(() => {
-    getDataFromAPI(id);
+    getDetailSurat(id);
   }, [id]); // Jalankan useEffect setiap `id` berubah
 
   if (loading) return <p>Loading...</p>;
@@ -80,6 +88,7 @@ const DetailSurat = () => {
         <div>
           <ul className="list-group">
             {surat.ayat.map((ayat) => (
+<<<<<<< HEAD
               <li
                 className="list-group-item d-flex justify-content-between align-items-center arabic-text"
                 key={ayat.nomorAyat }>
@@ -95,6 +104,27 @@ const DetailSurat = () => {
                     <FontAwesomeIcon icon={isPlaying ? faPauseCircle : faPlayCircle} className={`fs-4 ${isPlaying ? 'animate' : ''}`} />
                   </button>
                 </span>
+=======
+              <li key={ayat.nomorAyat}>
+                <div className="list-group-item d-flex justify-content-between">
+                  <span className=" align-items-center arabic-text">
+                    {ayat.teksArab}
+                  </span>
+                  <div className=" d-flex align-items-center">
+                    <span className="badge text-bg-primary rounded-sm d-flex align-items-center p-2 me-1">
+                      {ayat.nomorAyat}
+                    </span>
+                    <span>
+                      <AudioPlayer
+                        key={ayat.nomorAyat}
+                        url={ayat.audio["05"]}
+                        currentAudio={currentAudio}
+                        setCurrentAudio={setCurrentAudio}
+                      ></AudioPlayer>
+                    </span>
+                  </div>
+                </div>
+>>>>>>> 271d68acb7fcf9a9455ecf9aa56990dda12ba152
               </li>
             ))}
           </ul>
